@@ -13,6 +13,11 @@ const userRoute = require('./routes/user');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+
+require('dotenv').config();
+
+
 // mongodb://127.0.0.1:27017/short-url
 connectToMongoDB(process.env.MONGO_URI)
 .then(()=> console.log("Connected to MongoDB"))
