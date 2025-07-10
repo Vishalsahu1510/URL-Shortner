@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -13,9 +15,6 @@ const userRoute = require('./routes/user');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-
-require('dotenv').config();
 
 
 // mongodb://127.0.0.1:27017/short-url
@@ -34,6 +33,6 @@ app.use('/user', userRoute);
 app.use('/',checkAuth, staticRoute);
 
 
-app.listen(PORT, ()=>{
+app.listen(PORT, ()=> {
   console.log(`server started at PORT:${PORT}`);
 })

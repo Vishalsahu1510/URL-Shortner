@@ -1,26 +1,27 @@
 // const sessionIdToUserMap = new Map();
 
 const jwt = require("jsonwebtoken");
-const secretKey = process.env.SECRET_KEY;
+let secretKey = process.env.SECRET_KEY;
+
+// console.log("DEBUG: SECRET_KEY in auth.js:", secretKey);
 
 function setUser(user) {
-  return jwt.sign({
-    _id: user._id,
-    email: user._email,
-
-  }, secretKey);
-
+  return jwt.sign(
+    {
+      _id: user._id,
+      email: user._email,
+    },
+    secretKey
+  );
 }
 
 function getUser(token) {
   if (!token) return null;
-  try{
+  try {
     return jwt.verify(token, secretKey);
-  }
-  catch (error) {
+  } catch (error) {
     return null;
   }
-  
 }
 
 module.exports = {
